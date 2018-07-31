@@ -4,7 +4,7 @@
 <suite name="EDP SIT Tests">
     <test name="Smoke Tests">
         <packages>
-            <package name="com.epam.edp.tests" />
+            <package name="com.epam.edp"/>
         </packages>
     </test>
 </suite>
