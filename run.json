@@ -1,5 +1,5 @@
 {
-    "sit-demo": "mvn test -Dendpoint=https://openshift.main.edp.projects.epam.com:8443 -Dsurefire.suiteXmlFiles=testng-smoke-suite.xml",
-    "qa-demo": "mvn test -Dendpoint=https://openshift.main.edp.projects.epam.com:8443 -Dsurefire.suiteXmlFiles=testng-smoke-suite.xml",
+    "sit": "mvn test -Dendpoint=https://openshift.main.edp.projects.epam.com:8443 -Dsurefire.suiteXmlFiles=testng-smoke-suite.xml",
+    "qa": "mvn test -Dendpoint=https://openshift.main.edp.projects.epam.com:8443 -Dsurefire.suiteXmlFiles=testng-smoke-suite.xml",
     "precommit": "mvn test -Dendpoint=https://openshift.main.edp.projects.epam.com:8443 -Dsurefire.suiteXmlFiles=testng-smoke-suite.xml"
 }
