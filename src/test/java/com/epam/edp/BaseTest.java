@@ -37,9 +37,10 @@ public class BaseTest {
                         .preemptive()
                         .basic(PropertyReader.getProperty("keycloak.client_id"), PropertyReader.getProperty("keycloak.client_secret"))
                         .and()
+                        .pathParam("realm", PropertyReader.getProperty("keycloak.realm"))
                         .parameters("username", PropertyReader.getProperty("keycloak.username"), "password", PropertyReader.getProperty("keycloak.password"),
                                 "grant_type", PropertyReader.getProperty("keycloak.grant_type"))
-                        .post("/auth/realms/foobar-realm-sit/protocol/openid-connect/token")
+                        .post("/auth/realms/{realm}/protocol/openid-connect/token")
                         .asString();
         JsonPath jsonPath = new JsonPath(response);
         return jsonPath.getString("access_token");
