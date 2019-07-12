@@ -1,6 +1,5 @@
 package com.epam.edp;
 
-import com.epam.edp.util.PropertyReader;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.filter.log.RequestLoggingFilter;
@@ -22,28 +21,11 @@ public class BaseTest {
 
     @BeforeClass
     public static void configureRestAssured() {
-        RestAssured.baseURI = PropertyReader.getProperty("keycloak.host.name");
         RestAssured.useRelaxedHTTPSValidation();
         requestSpecification = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .addFilter(new ResponseLoggingFilter())
                 .addFilter(new RequestLoggingFilter()).build();
-    }
-
-    protected static String getAccessToken() {
-        String response =
-                given()
-                        .auth()
-                        .preemptive()
-                        .basic(PropertyReader.getProperty("keycloak.client_id"), PropertyReader.getProperty("keycloak.client_secret"))
-                        .and()
-                        .pathParam("realm", PropertyReader.getProperty("keycloak.realm"))
-                        .parameters("username", PropertyReader.getProperty("keycloak.username"), "password", PropertyReader.getProperty("keycloak.password"),
-                                "grant_type", PropertyReader.getProperty("keycloak.grant_type"))
-                        .post("/auth/realms/{realm}/protocol/openid-connect/token")
-                        .asString();
-        JsonPath jsonPath = new JsonPath(response);
-        return jsonPath.getString("access_token");
     }
 
     @AfterClass
